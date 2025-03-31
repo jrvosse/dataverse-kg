@@ -10,6 +10,8 @@ from utils import resolve_blank_nodes
 from rdflib import Graph
 from urllib.parse import urlparse
 
+logging.basicConfig(filename='./dv2fuseki.log', level=logging.DEBUG)
+
 def uploadRDF(lasturl, bnode_url, logger):
     response = requests.get(lasturl)
     logger.info("uploadRDF(%s)"%lasturl)
@@ -51,8 +53,8 @@ def main():
     response = requests.get(url)
     doc = xmltodict.parse(response.text)
     logger = logging.getLogger(__name__)
-    logging.basicConfig(level=logging.INFO)
     logger.info(url)
+    logger.debug(response.text)
 
     get_items(doc, bnode_url, logger)
 
