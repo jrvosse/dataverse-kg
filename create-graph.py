@@ -33,7 +33,7 @@ def get_items(doc, bnode_url, logger):
         hostitems = re.search(r"^(\S+)\/dataset\S+\?(persistent\S+)$", item['loc'])
         if hostitems:
             dvnurl = "%s/api/datasets/export?exporter=OAI_ORE&%s" % (
-            hostitems.group(1), hostitems.group(2))
+            DATAVERSE_URL, hostitems.group(2))
             # print(dvnurl)
             uploadRDF(dvnurl, bnode_url, logger)
             # except: print("UploadRDF() failed, Ignore %s" % dvnurl)
